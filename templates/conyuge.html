@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content%}
+<style type="text/css">
+    table {
+border: black 1px solid;
+  width: 60%;
+}
+  .boton_1{
+    text-decoration: none;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: helvetica;
+    font-weight: 300;
+    font-size: 25px;
+    font-style: italic;
+    color: darkblue;
+    background-color: turquoise;
+    border-radius: 15px;
+    border: 3px double darkblue;
+  }
+  .boton_1:hover{
+    opacity: 0.6;
+    text-decoration: none;
+  }
+</style>
+
+<form method="POST">
+    {% csrf_token %}
+    <center><h3>DIRECCION DE GESTION DE LEGALIZACION  DE TIERRAS</h3></center>
+    <center><h3>ARCHIVO</h3></center>
+    <center><table  border-collapse: collapse > 
+        <table>
+        <tr>
+            <th>Nombre: </th>
+            <td> {{ form.conyuge.nombre_conyuge }}</td>
+        </tr>
+                <tr>
+                    <td colspan="2">-</td>
+                </tr>
+            <tr>
+            <th>Apellido: </th>
+            <td> {{ form.conyuge.apellido_conyuge }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">-</td>
+        </tr>
+    <tr>
+        <th>Cedula: </th>
+        <td> {{ form.conyuge.cedula_connyugue }}</td>
+</tr>
+
+        <tr>
+            <td colspan="2">-</td>
+        </tr>
+
+          <tr>
+            <td colspan="2"><center><button type="submit" class="boton_1">Guardar</button></center></td>
+        </tr>
+            </table>
+    </table></center>
+    <a href="{% url 'Informacion_Predio_crear' %}"><input type="button" value="Regresar"></a>
+</form>
+{% endblock %}

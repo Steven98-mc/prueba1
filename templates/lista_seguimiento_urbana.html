@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Fecha de ingreso al D.M.Q</td>
+            <td>Fecha de solicitud de cambios</td>
+            <td>Fecha de reingresos al D.M.Q</td>
+            <td>Tramite</td>
+            <td>Tecnico Responsable</td>
+
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for mdmqUrbana in object_list %}
+		<tr>
+			<td>{{ mdmqUrbana.id }}</td>
+			<td>{{ mdmqUrbana.fecha_ingreso_dmq }}</td>
+			<td>{{ mdmqUrbana.fecha_solicitud_cambio }}</td>
+            <td>{{ mdmqUrbana.fecha_reingreso_dmq }}</td>
+            <td>{{ mdmqUrbana.tramite }}</td>
+            <td>{{ mdmqUrbana.tecnico }}</td>
+
+		</tr>
+		{% endfor %}
+		{% else %}
+		<h1>NO HAY REGISTROS DE SEGUIMIENTO URBANA</h1>
+		{% endif %}
+    </tbody>
+    
+</table> 
+{% endblock%}

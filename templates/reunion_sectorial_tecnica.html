@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<style type="text/css">
+    table {
+border: black 1px solid;
+  width: 60%;
+}
+  .boton_1{
+    text-decoration: none;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: helvetica;
+    font-weight: 300;
+    font-size: 25px;
+    font-style: italic;
+    color: darkblue;
+    background-color: turquoise;
+    border-radius: 15px;
+    border: 3px double darkblue;
+  }
+  .boton_1:hover{
+    opacity: 0.6;
+    text-decoration: none;
+  }
+</style>
+<script>
+    function solonumeros(e){
+        key=e.keyCode || e.which;
+
+        teclado= String.fromCharCode(key);
+
+        numeros="0123456789/-";
+
+        especiales="8-37-38-46";
+
+        teclado_especial= false;
+        for (var i in especiales ){
+            if(key==especiales[i]){
+                teclado_especial=true;
+            }
+        }
+        if(numeros.indexOf(teclado)==-1 && !teclado_especial){
+            return false;
+
+        }
+
+    }
+</script>
+<form method="POST">
+    {% csrf_token %}
+    <center><table  border-collapse: collapse > 
+        <table>
+            <tr>
+                <td colspan="8" style="font-family:'Courier New', Courier, monospace"><center><h3>DIRECCION DE GESTION DE LEGALIZACION  DE TIERRAS</h3></center></td>
+            </tr>
+            <tr>
+                <td colspan="8" style="font-family:'Courier New', Courier, monospace"><center><h3>COORDINACION URBANA</h3></center></td>
+            </tr>
+            <tr>
+                <td colspan="8" style="font-family:'Courier New', Courier, monospace"><center><h3>REUNION SECTORIAL TECNICA</h3></center></td>
+            </tr>
+            <tr>
+                <td colspan="8">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <th>Fecha de reunion: </th>
+                <td onkeypress="return solonumeros(event)">{{ form.informesectorial.fecha_reunion_sec }}</td>
+                <th>Tramite:</th>
+                <td>{{ form.informesectorial.tramite}}</td>
+                <th>Numero: </th>
+                <td onkeypress="return solonumeros(event)"> {{ form.informesectorial.numero_beneficiarios }}</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="8">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td colspan="6"  style="font-family: fantasy">COORDENADAS DE PUNTOS DE CONTROL:</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="8">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <th>Fecha de toma de puntos: </th>
+                <td onkeypress="return solonumeros(event)"> {{ form.informesectorial.fecha_toma_puntos }}</td>
+                <th>&nbsp;</th>
+                <td>&nbsp;</td>
+                <th>&nbsp;</th>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="8">&nbsp;</td>
+            </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <th>N°: </th>
+            <td onkeypress="return solonumeros(event)"> {{ form.informesectorial.numero }}</td>
+            <th>Cordenada X(Este): </th>
+            <td onkeypress="return solonumeros(event)"> {{ form.informesectorial.CoordenadaX }}</td>
+            <th>Coordenada Y(Norte):</th>
+            <td onkeypress="return solonumeros(event)">{{ form.informesectorial.CoordenadaY }}</td>
+            <td>&nbsp;</td>
+        </tr>
+                <tr>
+                    <td colspan="8">&nbsp;</td>
+                </tr>
+            <tr>
+                <td>&nbsp;</td>
+            <th>PDO de arranque: </th>
+            <td onkeypress="return solonumeros(event)"> {{ form.informesectorial.pdo_arranque }}</td>
+            <th>&nbsp;</th>
+            <td>&nbsp;</td>
+            <th>Tec responsable: </th>
+            <td> {{ form.informesectorial.tecnico }}</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="8">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="6" style="font-family: fantasy">SOBREVUELO DEL DRONE:</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="8">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <th>Fecha de vuelo: </th>
+            <td onkeypress="return solonumeros(event)"> {{ form.drone.fecha_vuelo }}</td>
+            <th>&nbsp;</th>
+            <td>&nbsp;</td>
+            <th>Tramite;</th>
+            <td>{{ form.drone.tramite}}</td>
+            <td>&nbsp;</td>
+
+        </tr>
+        <tr>
+            <td colspan="8">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <th>Topografia: </th>
+            <td> {{ form.drone.topografia }}</td>
+            <th>Resolucion GSD: </th>
+            <td> {{ form.drone.resolucion_gsd }}</td>
+            <th>Altura de vuelo: </th>
+            <td onkeypress="return solonumeros(event)"> {{ form.drone.altura_vuelo }}</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="8">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <th>Velocidad de vuelo: </th>
+            <td> {{ form.drone.velocidad_vuelo }}</td>
+            <th>&nbsp;</th>
+            <td>&nbsp;</td>
+            <th>Angulo de inclinacion de la camara: </th>
+            <td> {{ form.drone.angulo_inclinacion }}</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="8">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <th>&nbsp;</th>
+            <td>&nbsp;</td>
+            <th>&nbsp;</th>
+            <td>&nbsp;</td>
+            <th>Tec Responsable: </th>
+            <td> {{ form.drone.tecnico }}</td>
+            <td>&nbsp;</td>
+        </tr>
+          <tr>
+            <td colspan="8"><center><button type="submit" class="boton_1">Guardar</button></center></td>
+        </tr>
+            </table>
+    </table></center>
+</form>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Fecha de Reunion</td>
+            <td>Fecha de toma de puntos</td>
+            <td>Coordenada X (Este)</td>
+            <td>Coordenada Y (Norte)</td>
+            <td>Pdo Arranque</td>
+            <td>Numero de beneficiarios</td>
+            <td>Tecnico Responsable</td>
+            <td>Tramite</td>
+
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for InformeSectorial in object_list %}
+		<tr>
+			<td>{{ InformeSectorial.id }}</td>
+			<td>{{ InformeSectorial.fecha_reunion_sec }}</td>
+			<td>{{ InformeSectorial.fecha_toma_puntos }}</td>
+            <td>{{ InformeSectorial.CoordenadaX }}</td>
+            <td>{{ InformeSectorial.CoordenadaY }}</td>
+            <td>{{ InformeSectorial.pdo_arranque }}</td>
+            <td>{{ InformeSectorial.numero_beneficiarios }}</td>
+            <td>{{ InformeSectorial.tecnico }}</td>
+            <td>{{ InformeSectorial.tramite }}</td>
+
+		</tr>
+		{% endfor %}
+		{% else %}
+		<h1>NO HAY REGISTROS DE INFORME SECTORIAL</h1>
+		{% endif %}
+    </tbody>
+    
+</table> 
+<a href="{% url 'Reunion_Sectorial_Tecnica_drone_listar' %}"><input type="button" value="SIGUIENTE"></a>
+{% endblock%}

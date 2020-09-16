@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block content%}
+<style type="text/css">
+    table {
+        border: black 1px solid;
+        width: 60%;
+    }
+
+    .boton_1 {
+        text-decoration: none;
+        padding: 3px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-family: helvetica;
+        font-weight: 300;
+        font-size: 25px;
+        font-style: italic;
+        color: darkblue;
+        background-color: turquoise;
+        border-radius: 15px;
+        border: 3px double darkblue;
+    }
+
+    .boton_1:hover {
+        opacity: 0.6;
+        text-decoration: none;
+    }
+</style>
+<script>
+    function sololetras(e) {
+        key = e.keyCode || e.which;
+
+        teclado = String.fromCharCode(key).toLowerCase();
+
+        letras = " abcdefghijklmnñopqrstuvwxyz";
+
+        especiales = "8-37-38-46-164";
+
+        teclado_especial = false;
+
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                teclado_especial = true; break;
+            }
+        }
+        if (letras.indexOf(teclado) == -1 && !teclado_especial) {
+            return false;
+
+        }
+    }
+</script>
+<form method="POST">
+    {% csrf_token %}
+
+
+    <center>
+        <table border-collapse: collapse>
+            <table>
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <center>
+                            <h3>DIRECCION DE GESTION DE LEGALIZACION DE TIERRAS</h3>
+                        </center>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <center>
+                            <h3>ARCHIVO</h3>
+                        </center>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td>&nbsp;</td>
+                    <th>Fecha:</th>
+                    <td>{{ form.archivo.fecha }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <th>Razones: </th>
+                    <td onkeypress="return sololetras(event)"> {{ form.archivo.razones }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <th>N° Tramite: </th>
+                    <td> {{ form.archivo.tramite }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <th>Tec Responsable: </th>
+                    <td> {{ form.archivo.tecnico }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <center><button type="submit" class="boton_1">Guardar</button></center>
+                    </td>
+                </tr>
+            </table>
+        </table>
+    </center>
+</form>
+{% endblock %}

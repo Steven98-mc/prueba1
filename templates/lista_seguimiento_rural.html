@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Fecha de entrega del plano borrador</td>
+			<td>Fecha firma de plano original</td>
+            
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object_list %}
+        {% for gadpp in object_list %}
+
+		<tr>
+			<td>{{ gadpp.id }}</td>
+			<td>{{ gadpp.fecha_entrega_plano_borrador }}</td>
+            <td>{{ gadpp.fecha_firma_plano_original }}</td>
+		</tr>
+        {% endfor %}
+        {% else %}        
+		<h1>NO HAY REGISTROS DE SEGUIMIENTO RURAL</h1>
+        {% endif %}
+
+    </tbody>
+    
+</table>
+<a href="{% url 'Seguimientostra_listar' %}"><input type="button" value="SIGUIENTE"></a>
+{% endblock %}

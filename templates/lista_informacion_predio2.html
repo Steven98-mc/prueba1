@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Fecha de inhgreso</td>
+			<td>Tramite</td>
+			<td>Coordenada X</td>
+			<td>Coordenada Y</td>
+			<td>Superficie</td>
+			<td>Geocodigo</td>
+			<td>Observaciones</td>
+            
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object_list %}
+        {% for predio in object_list %}
+
+		<tr>
+			<td>{{ predio.id }}</td>
+			<td>{{ predio.fecha_ingreso }}</td>
+			<td>{{ predio.tramite }}</td>
+			<td>{{ predio.coordenadaX }}</td>
+			<td>{{ predio.coordenadaY }}</td>
+			<td>{{ predio.superficie }}</td>
+			<td>{{ predio.geocodigo }}</td>
+			<td>{{ predio.observaciones}}</td>
+		</tr>
+        {% endfor %}
+        {% else %}        
+		<h1>NO HAY REGISTROS DE INFORMACION DEL PREDIO</h1>
+        {% endif %}
+
+    </tbody>
+    
+</table>
+{% endblock %}

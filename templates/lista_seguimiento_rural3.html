@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>D.M.Q Certificado de Estado</td>
+            <td>Fecha de entrega de certificado de estado</td>
+            <td>Fecha de ingreso registro de la propiedad</td>
+            <td>Numero de registro</td>
+            <td>Tramite</td>
+            
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object_list %}
+        {% for mdmq in object_list %}
+		<tr>
+			<td>{{ mdmq.id }}</td>
+			<td>{{ mdmq.certificado_estado }}</td>
+            <td>{{ mdmq.fecha_entrega_certificado_estado }}</td>
+            <td>{{ mdmq.fecha_ingreso_registro_propiedad }}</td>
+            <td>{{ mdmq.numero_registro }}</td>
+            <td>{{ mdmq.tramite }}</td>
+		</tr>
+        {% endfor %}
+        {% else %}        
+		<h1>NO HAY REGISTROS DE SEGUIMIENTO RURAL</h1>
+        {% endif %}
+        
+    </tbody>
+</table>
+<a href="{% url 'Seguimientostra_listar' %}"><input type="button" value="REGRESAR"></a>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Fecha de reunion</td>
+			<td>Tramite</td>
+			<td>Homogeneidad</td>
+			<td>Definicion e procesos de intervencion:</td>
+			<td>Datos de los predios:</td>
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object_list %}
+        {% for InformeSociologica in object_list %}
+
+		<tr>
+			<td>{{ InformeSociologica.id }}</td>
+            <td>{{ InformeSociologica.fecha_reunion_soci }}</td>
+            <td>{{ InformeSociologica.tramite }}</td>
+			<td>{{ InformeSociologica.homogenidad_predial }}</td>
+			<td>{{ InformeSociologica.datos_predios }}</td>
+			<td>{{ InformeSociologica.def_procesos_intervencion }}</td>
+            
+		</tr>
+        {% endfor %}
+        {% else %}        
+		<h1>NO HAY REGISTROS DE INFORMACION DEL PREDIO</h1>
+        {% endif %}
+
+    </tbody>
+    
+</table>
+{% endblock %}

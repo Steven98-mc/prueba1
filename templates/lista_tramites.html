@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Tipo de tramite:</td>
+            <td>Numero:</td>
+            <td>Fecha de reunion:</td>
+            <td>Fecha de reunion en el sector:</td>
+            <td>Tec responsable:</td>
+
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for Tramite in object_list %}
+		<tr>
+			<td>{{ Tramite.id }}</td>
+			<td>{{ Tramite.tipo_tramite }}</td>
+			<td>{{ Tramite.numero }}</td>
+            <td>{{ Tramite.fecha_reunion_ingreso }}</td>
+            <td>{{ Tramite.fecha_reunion_sector }}</td>
+            <td>{{ Tramite.tecnico }}</td>
+		</tr>
+		{% endfor %}
+		{% else %}
+		<h1>NO HAY REGISTROS DE INFORME SECTORIAL</h1>
+		{% endif %}
+    </tbody>
+    
+</table> 
+{% endblock%}

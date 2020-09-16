@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+{% block content%}
+<style type="text/css">
+  table {
+    border: black 1px solid;
+    width: 60%;
+  }
+
+  .boton_1 {
+    text-decoration: none;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: helvetica;
+    font-weight: 300;
+    font-size: 25px;
+    font-style: italic;
+    color: darkblue;
+    background-color: turquoise;
+    border-radius: 15px;
+    border: 3px double darkblue;
+  }
+
+  .boton_1:hover {
+    opacity: 0.6;
+    text-decoration: none;
+  }
+</style>
+<script>
+  function solonumeros(e){
+      key=e.keyCode || e.which;
+
+      teclado= String.fromCharCode(key);
+
+      numeros="0123456789/";
+
+      especiales="8-37-38-46";
+
+      teclado_especial= false;
+      for (var i in especiales ){
+          if(key==especiales[i]){
+              teclado_especial=true;
+          }
+      }
+      if(numeros.indexOf(teclado)==-1 && !teclado_especial){
+          return false;
+
+      }
+
+  }
+</script>
+<script>
+  function sololetras(e){
+      key=e.keyCode || e.which;
+
+      teclado= String.fromCharCode(key).toLowerCase();
+
+      letras=" abcdefghijklmnñopqrstuvwxyz";
+
+      especiales="8-37-38-46-164";
+
+      teclado_especial=false;
+
+      for (var i in especiales ){
+          if(key==especiales[i]){
+              teclado_especial=true;break;
+          }
+      }
+      if(letras.indexOf(teclado)==-1 && !teclado_especial){
+          return false;
+
+      }
+  }
+</script>
+<form method="POST">
+  {% csrf_token %}
+
+
+
+  <center>
+    <table border-collapse: collapse>
+      <table>
+        <tr>
+          <td colspan="8">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="8">
+            <center>
+              <h3>DIRECCION DE GESTION DE LEGALIZACION DE TIERRAS</h3>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="8">
+            <center>
+              <h3>COORDINACION DE INFORMACION PREDIAL</h3>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="8">
+            <center>
+              <h3>REUNION CON LOS DIRECTIVOS</h3>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td colspan="7">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <th>N° Tramite: </th>
+          <td>{{ form.beneficiario.tramite }}</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="8">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td colspan="7" style="font-family: fantasy">INFORMACION DEL SOLICITANTE:</td>
+        </tr>
+        <tr>
+          <td colspan="8">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <th>Nombre: </th>
+          <td onkeypress="return sololetras(event)">{{ form.beneficiario.nombre }}</td>
+          <th>Apellido: </th>
+          <td onkeypress="return sololetras(event)"> {{ form.beneficiario.apellido }}</td>
+          <th>Cedula: </th>
+          <td onkeypress="return solonumeros(event)"> {{ form.beneficiario.cedula }}</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td colspan="7">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <th>Celular: </th>
+          <td onkeypress="return solonumeros(event)"> {{ form.beneficiario.celular }}</td>
+          <th>Correo: </th>
+          <td> {{ form.beneficiario.correo }}</td>
+          <th>Sexo: </th>
+          <td> {{ form.beneficiario.sexo }}</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="8">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <th>DIgnididad: </th>
+          <td> {{ form.beneficiario.dignidad }}</td>
+          <th>Edad: </th>
+          <td onkeypress="return solonumeros(event)"> {{ form.beneficiario.edad }}</td>
+          <th>Estado Civil: </th>
+          <td> {{ form.beneficiario.estado_civil }}</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="8">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td colspan="7" style="font-family: fantasy">CARACTERIZACION PREDIAL:</td>
+        </tr>
+        <tr>
+          <td colspan="8">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <th>Fecha de entrega de informacion: </th>
+          <td onkeypress="return solonumeros(event)">{{ form.informedirectivo.fecha_entrega_informacion }}</td>
+          <th>Fecha de firma de convenio de cooperacion : </th>
+          <td onkeypress="return solonumeros(event)"> {{ form.informedirectivo.fecha_firma_convenio }}</td>
+          <th>Numero de beneficiario en el sector: </th>
+          <td onkeypress="return solonumeros(event)"> {{ form.informedirectivo.numero_beneficiario_sector}}</td>
+          <td>&nbsp;</td>
+
+        </tr>
+        <tr>
+          <td colspan="8">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <th>Conformacion social legal el predio: </th>
+          <td> {{ form.informedirectivo.conf_socialpredio}}</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td colspan="7">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <th>Problemas encontrados: </th>
+          <td>{{ form.informedirectivo.problemas_encontrados }}</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td colspan="7">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <th>Posibles soluciones: </th>
+          <td>{{ form.informedirectivo.posibles_soluciones }}</td>
+          <td>&nbsp;</td>
+          <td>Seleccione el tramite</td>
+          <td>{{ form.informedirectivo.tramite }}</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td colspan="7">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="8">
+            <center><button type="submit" class="boton_1">Guardar</button></center>
+          </td>
+        </tr>
+      </table>
+    </table>
+  </center>
+</form>
+
+{% endblock %}

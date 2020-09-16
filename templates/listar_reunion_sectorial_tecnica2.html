@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Fecha de vuelo</td>
+            <td>Topografia</td>
+            <td>Resolucion GSD</td>
+			<td>Altura del vuelo</td>
+			<td>Velocidad del vuelo</td>
+			<td>Alngulo de inclinacion de la camara</td>
+			<td>Tramite</td>
+			<td>Tecnico Responsable</td>
+
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for drone in object_list %}
+		<tr>
+			<td>{{ drone.id }}</td>
+			<td>{{ drone.fecha_vuelo }}</td>
+			<td>{{ drone.topografia }}</td>
+            <td>{{ drone.resolucion_gsd }}</td>
+            <td>{{ drone.altura_vuelo }}</td>
+			<td>{{ drone.velocidad_vuelo }}</td>
+			<td>{{ drone.angulo_inclinacion }}</td>
+			<td>{{ drone.tramite }}</td>
+			<td>{{ drone.tecnico }}</td>
+
+		</tr>
+		{% endfor %}
+		{% else %}
+		<h1>NO HAY REGISTROS DE SEGUIMIENTO URBANA</h1>
+		{% endif %}
+    </tbody>
+    
+</table> 
+<a href="{% url 'Reunion_Sectorial_Tecnica_listar' %}"><input type="button" value="REGRESAR"></a>
+{% endblock%}

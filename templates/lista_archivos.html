@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Fecha</td>
+			<td>Razon</td>
+            <td>Tecnico</td>
+            <td>Tramite</td>
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for archivo in object_list %}
+		<tr>
+			<td>{{ archivo.id }}</td>
+			<td>{{ archivo.fecha }}</td>
+			<td>{{ archivo.razones }}</td>
+            <td>{{ archivo.tecnico }}</td>
+            <td>{{ archivo.tramite }}</td>
+		</tr>
+		{% endfor %}
+		{% else %}
+		<h1>NO HAY REGISTROS DE ARCHIVOS</h1>
+		{% endif %}
+    </tbody>
+    
+</table> 
+{% endblock%}

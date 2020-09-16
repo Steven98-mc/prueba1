@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+            <td>#</td>
+            <td>Fecha del certificado MAE</td>
+            <td>Fecha de ingreso al STRA</td>
+			<td>Fecha de inspeccion</td>
+            <td>Fecha de entrega de providencias</td>
+            <td>Numero de providencias</td>
+            <td>Resgistro stra</td>
+
+
+            
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object_list %}
+        {% for stra in object_list %}
+
+		<tr>
+			<td>{{ stra.id }}</td>
+			<td>{{ stra.fecha_inspeccion }}</td>
+            <td>{{ stra.fecha_certificado_mae }}</td>
+            <td>{{ stra.fecha_ingreso_stra }}</td>
+            <td>{{ stra.fecha_entrega_providencia }}</td>
+            <td>{{ stra.numero_providencia }}</td>
+            <td>{{ stra.registro_stra }}</td>
+
+		</tr>
+        {% endfor %}
+        {% else %}        
+		<h1>NO HAY REGISTROS DE SEGUIMIENTO RURAL</h1>
+        {% endif %}
+    </tbody>
+</table>
+<a href="{% url 'Seguimiento_listar' %}"><input type="button" value="REGRESAR"></a>
+<a href="{% url 'Seguimientomdmq_listar' %}"><input type="button" value="SIGUIENTE"></a>
+{% endblock %}

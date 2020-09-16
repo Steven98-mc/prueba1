@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre:</td>
+			<td>Apellido:</td>
+			<td>Cedula:</td>
+			<td>Celular:</td>
+			<td>Correo:</td>
+			<td>Sexo:</td>
+			<td>Edad</td>
+			<td>Estado civil</td>
+            
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object_list %}
+        {% for Beneficiario in object_list %}
+
+		<tr>
+			<td>{{ Beneficiario.id }}</td>
+			<td>{{ Beneficiario.nombre }}</td>
+			<td>{{ Beneficiario.apellido }}</td>
+			<td>{{ Beneficiario.cedula }}</td>
+			<td>{{ Beneficiario.celular }}</td>
+			<td>{{ Beneficiario.correo }}</td>
+			<td>{{ Beneficiario.sexo }}</td>
+			<td>{{ Beneficiario.edad }}</td>
+			<td>{{ Beneficiario.estado_civil }}</td>
+		</tr>
+        {% endfor %}
+        {% else %}        
+		<h1>NO HAY REGISTROS DE INFORMACION DEL PREDIO</h1>
+        {% endif %}
+
+    </tbody>
+    
+</table>
+<a href="{% url 'Informacion_predio_listar' %}"><input type="button" value="SIGUIENTE"></a>
+{% endblock %}
